@@ -90,7 +90,7 @@ for (let i = 0; i < wizards.length; i++) {
   wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
   wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
   fragment.appendChild(wizardElement);
-};
+}
 
 wizardsList.appendChild(fragment);
 
