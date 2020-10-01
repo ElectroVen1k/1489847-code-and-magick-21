@@ -1,8 +1,8 @@
 'use strict';
 
 const setupField = document.querySelector('.setup');
-const charactersField = setupField.querySelector('.setup-similar');
-const wizardsList = document.querySelector('.setup-similar-list');
+const wizardsListField = setupField.querySelector('.setup-similar');
+const wizardsListContainer = document.querySelector('.setup-similar-list');
 const wizardTemplate = document.querySelector('#similar-wizard-template')
   .content
   .querySelector('.setup-similar-item');
@@ -58,30 +58,39 @@ const getRandomValue = function (value) {
 };
 
 const getRandomName = function () {
-  let name = getRandomValue(WIZARDS_FIRST_NAME)
+  return getRandomValue(WIZARDS_FIRST_NAME)
   + ' '
   + getRandomValue(WIZARDS_SECOND_NAME);
-  return name;
 };
 
 const getFakeWizard = function () {
-  let wizardElement = wizardTemplate.cloneNode(true);
-  wizardElement.querySelector('.setup-similar-label').textContent = getRandomName();
-  wizardElement.querySelector('.wizard-coat').style.fill = getRandomValue(COAT_COLORS);
-  wizardElement.querySelector('.wizard-eyes').style.fill = getRandomValue(EYES_COLORS);
-  return wizardElement;
+  const wizardName = getRandomName();
+  const wizardCoat = getRandomValue(COAT_COLORS);
+  const wizardEyes = getRandomValue(EYES_COLORS);
+  return [wizardName, wizardCoat, wizardEyes];
 };
 
-const getFakeWizardsList = function () {
-  const fragment = document.createDocumentFragment();
+const getFakeWizardElement = function (wizard) {
+  const fakeWizardElement = wizardTemplate.cloneNode(true);
+  fakeWizardElement.querySelector('.setup-similar-label').textContent = wizard[0];
+  fakeWizardElement.querySelector('.wizard-coat').style.fill = wizard[1];
+  fakeWizardElement.querySelector('.wizard-eyes').style.fill = wizard[2];
+  return fakeWizardElement;
+};
 
-  for (let i = 0; i < WIZARDS_QUANTITY; i++) {
-    fragment.appendChild(getFakeWizard());
+const fragment = document.createDocumentFragment();
+
+const getFakeWizardsList = function (quantity) {
+  for (let i = 0; i < quantity; i++) {
+    const fakeWizard = getFakeWizard();
+    const wizardElement = getFakeWizardElement(fakeWizard);
+    fragment.appendChild(wizardElement);
   }
-
-  wizardsList.appendChild(fragment);
+  return fragment;
 };
 
-getFakeWizardsList();
+const randomWizards = getFakeWizardsList(WIZARDS_QUANTITY);
 
-charactersField.classList.remove('hidden');
+wizardsListContainer.appendChild(randomWizards);
+
+wizardsListField.classList.remove('hidden');
