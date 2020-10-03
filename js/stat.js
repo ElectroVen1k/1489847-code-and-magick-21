@@ -16,7 +16,7 @@ const renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-let getMaxElement = function (arr) {
+const getMaxElement = function (arr) {
   let maxElement = arr[0];
 
   for (let i = 1; i < arr.length; i++) {
@@ -28,11 +28,11 @@ let getMaxElement = function (arr) {
   return maxElement;
 };
 
-let getRandom = function (min, max) {
+const getRandom = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-let getRandomSaturate = function () {
+const getRandomSaturate = function () {
   return 'hsl(240, ' + getRandom(1, 100) + '%, 40%)';
 };
 
@@ -78,11 +78,9 @@ window.renderStatistics = function (ctx, names, times) {
         CLOUD_Y + CLOUD_HEIGHT - TEXT_HEIGHT + GAP
     );
 
-    if (names[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      ctx.fillStyle = getRandomSaturate();
-    }
+    ctx.fillStyle = names[i] === 'Вы'
+      ? 'rgba(255, 0, 0, 1)'
+      : getRandomSaturate();
 
     ctx.fillRect(
         CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
