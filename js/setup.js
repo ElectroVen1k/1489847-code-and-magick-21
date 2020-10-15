@@ -6,7 +6,7 @@ const buttonCloseSetup = setupField.querySelector('.setup-close');
 const nameInput = setupField.querySelector('.setup-user-name');
 const coatColorInput = setupField.querySelector('input[name=coat-color]');
 const eyesColorInput = setupField.querySelector('input[name=eyes-color]');
-const fireBallColorInput = setupField.querySelector('input[name=fireball-color]');
+const fireballColorInput = setupField.querySelector('input[name=fireball-color]');
 const setupFireballElement = setupField.querySelector('.setup-fireball-wrap');
 const setupEyesElement = setupField.querySelector('.wizard-eyes');
 const setupCoatElement = setupField.querySelector('.wizard-coat');
@@ -163,39 +163,37 @@ buttonOpenSetup.addEventListener('keydown', function (evt) {
     openSetupBlock();
   }
 });
-
-let idCoatColor = 1;
+//
 
 const swapCoatColor = function () {
-  setupCoatElement.style.fill = COAT_COLORS[idCoatColor];
-  coatColorInput.value = COAT_COLORS[idCoatColor];
-  if (idCoatColor < COAT_COLORS.length - 1) {
-    idCoatColor = idCoatColor + 1;
+  let currentIndex = COAT_COLORS.indexOf(coatColorInput.value);
+  if (currentIndex < COAT_COLORS.length - 1) {
+    setupCoatElement.style.fill = COAT_COLORS[currentIndex + 1];
+    coatColorInput.value = COAT_COLORS[currentIndex + 1];
   } else {
-    idCoatColor = 0;
+    setupCoatElement.style.fill = COAT_COLORS[0];
+    coatColorInput.value = COAT_COLORS[0];
   }
 };
-
-let idEyesColor = 1;
 
 const swapEyesColor = function () {
-  setupEyesElement.style.fill = EYES_COLORS[idEyesColor];
-  eyesColorInput.value = EYES_COLORS[idEyesColor];
-  if (idEyesColor < EYES_COLORS.length - 1) {
-    idEyesColor = idEyesColor + 1;
+  let currentIndex = EYES_COLORS.indexOf(eyesColorInput.value);
+  if (currentIndex < EYES_COLORS.length - 1) {
+    setupEyesElement.style.fill = EYES_COLORS[currentIndex + 1];
+    eyesColorInput.value = EYES_COLORS[currentIndex + 1];
   } else {
-    idEyesColor = 0;
+    setupEyesElement.style.fill = EYES_COLORS[0];
+    eyesColorInput.value = EYES_COLORS[0];
   }
 };
 
-let idFireballColor = 1;
-
 const swapFireballColor = function () {
-  setupFireballElement.style.backgroundColor = FIREBALL_COLORS[idFireballColor];
-  fireBallColorInput.value = FIREBALL_COLORS[idFireballColor];
-  if (idFireballColor < FIREBALL_COLORS.length - 1) {
-    idFireballColor = idFireballColor + 1;
+  let currentIndex = FIREBALL_COLORS.indexOf(fireballColorInput.value);
+  if (currentIndex < FIREBALL_COLORS.length - 1) {
+    setupFireballElement.style.backgroundColor = FIREBALL_COLORS[currentIndex + 1];
+    fireballColorInput.value = FIREBALL_COLORS[currentIndex + 1];
   } else {
-    idFireballColor = 0;
+    setupFireballElement.style.backgroundColor = FIREBALL_COLORS[0];
+    fireballColorInput.value = FIREBALL_COLORS[0];
   }
 };
