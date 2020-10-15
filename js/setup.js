@@ -82,14 +82,18 @@ const getFakeWizard = function () {
   const wizardName = getRandomName();
   const wizardCoat = getRandomValue(COAT_COLORS);
   const wizardEyes = getRandomValue(EYES_COLORS);
-  return [wizardName, wizardCoat, wizardEyes];
+  return {
+    name: wizardName,
+    coat: wizardCoat,
+    eyes: wizardEyes
+  };
 };
 
 const getFakeWizardElement = function (wizard) {
   const fakeWizardElement = wizardTemplate.cloneNode(true);
-  fakeWizardElement.querySelector('.setup-similar-label').textContent = wizard[0];
-  fakeWizardElement.querySelector('.wizard-coat').style.fill = wizard[1];
-  fakeWizardElement.querySelector('.wizard-eyes').style.fill = wizard[2];
+  fakeWizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+  fakeWizardElement.querySelector('.wizard-coat').style.fill = wizard.coat;
+  fakeWizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyes;
   return fakeWizardElement;
 };
 
